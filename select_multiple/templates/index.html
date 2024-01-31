@@ -1,0 +1,121 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      type="text/css"
+      rel="shortcut icon"
+      href="{% static 'imgs/favicon.ico' %}" />
+    <title>Select Multiple con Python y Django</title>
+
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN"
+      crossorigin="anonymous" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@500&display=swap"
+      rel="stylesheet" />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" />
+    <link rel="stylesheet" href="{% static 'css/style.css' %}" />
+
+    <!-- para el select multiple-->
+    <link
+      rel="stylesheet"
+      href="https://harvesthq.github.io/chosen/chosen.css"
+      type="text/css" />
+  </head>
+  <body>
+    <div class="container mt-5">
+      <div class="row justify-content-center first_row mb-5">
+        <div class="col-md-12">
+          <h1 class="text-center fw-bold mt-5 mb-5">
+            Select Múltiple con Python y Django
+            <a
+              style="font-size: 14px; float: right"
+              href="{% url 'estudiantes' %}">
+              Listado estudiantes
+            </a>
+            <br />
+            <hr />
+          </h1>
+        </div>
+      </div>
+
+      <form
+        name="selectMultiple"
+        id="selectMultiple"
+        action="{% url 'add_student' %}"
+        method="POST">
+        <div class="row mt5 justify-content-center mb-5">
+          {% csrf_token %}
+          <div class="col-md-4">
+            <label for="estudiante">Estudiante</label>
+            <input
+              type="text"
+              class="form-control"
+              name="estudiante"
+              id="estudiante" />
+          </div>
+          <div class="col-md-4">
+            <div id="output"></div>
+            <label for="cursos">Cursos</label>
+            <select
+              data-placeholder="lista de cursos ..."
+              name="cursos[]"
+              id="cursos"
+              multiple
+              class="chosen-select form-control">
+              <option value="">Seleccione</option>
+              <option value="HTML">HTML</option>
+              <option value="CSS">CSS</option>
+              <option value="PHP">PHP</option>
+              <option value="NODE JS">NODE JS</option>
+              <option value="REACT JS">REACT JS</option>
+              <option value="ASTRO">ASTRO</option>
+              <option value="VUE JS">VUE JS</option>
+              <option value="MYSQL">MYSQL</option>
+              <option value="FLUTTER">FLUTTER</option>
+              <option value="PYTHON Y DJANGO">PYTHON Y DJANGO</option>
+              <option value="DEPLOY DJANGO EN VPS">DEPLOY DJANGO EN VPS</option>
+              <option value="DESARROLLO WEB">DESARROLLO WEB</option>
+              <option value="PROGRAMACIÓN">PROGRAMACIÓN</option>
+              <option value="DESARROLLO FRONT-END">DESARROLLO FRONT-END</option>
+              <option value="DESARROLLO BACK-END">DESARROLLO BACK-END</option>
+            </select>
+          </div>
+        </div>
+        <div class="row justify-content-center">
+          <div class="col-md-6">
+            <div class="d-grid gap-2">
+              <button class="btn btn-primary" type="submit">
+                Registrar curso
+              </button>
+            </div>
+          </div>
+        </div>
+      </form>
+      <br />
+    </div>
+
+    <!-- para el select multiple-->
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"
+      integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"></script>
+    <script src="https://harvesthq.github.io/chosen/chosen.jquery.js"></script>
+
+    <script src="{% static 'js/script.js' %}"></script>
+    <script>
+      document.getElementById("output").innerHTML = location.search;
+      $(".chosen-select").chosen();
+    </script>
+  </body>
+</html>
