@@ -59,7 +59,7 @@
         python manage.py runserver
         Revisar la consola y visitar la URL http://127.0.0.1:8000
 
-10. Crear el archivo urls.py en la aplicación (traductor)
+10. Crear el archivo urls.py en la aplicación (select_multiple)
 
         from django.urls import path
         from . import views
